@@ -57,7 +57,8 @@
     }
     var s = "";
     for (var i=0 ; i<results.length; i++) {
-      s += "= " + results[i] + "<br />";
+      if (!i) s += "<br />";
+      else s += "= " + results[i] + "<br />";
     }
     liWyniki.innerHTML = s;
     butt.setAttribute("value", "Ukryj wyniki");
