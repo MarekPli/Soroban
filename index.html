@@ -45,6 +45,7 @@
       liWyniki.innerHTML="";
     }
     document.getElementById('buttonWy').setAttribute("value", "Pokaż wyniki");
+    document.getElementById('buttonW').setAttribute("value", "Pokaż wynik");
   }
 
   function showWy() {
@@ -65,8 +66,15 @@
   }
   function showW() {
     var li = document.getElementById('lista');
-    if (li.innerHTML.search('=') <0){
+    var butt = document.getElementById('buttonW');
+    var i = li.innerHTML.search('=')
+    if (i < 0) {
       li.innerHTML += '= ' + result;
+      butt.setAttribute("value", "Ukryj wynik");
+    }
+    else {
+      li.innerHTML = li.innerHTML.substr(0,i);
+      butt.setAttribute("value", "Pokaż wynik");
     }
   }
 
@@ -82,7 +90,7 @@
     <input type="button" value="Trzycyfrowe" onclick="prepare_list('trzycyfrowe')">
     <br /><br />
     <input type="button" id="buttonWy" value="Pokaż wyniki" onclick="showWy()">
-    <input type="button" value="Pokaż wynik" onclick="showW()">
+    <input type="button" id="buttonW" value="Pokaż wynik" onclick="showW()">
 
   </form>
   <div style="clear:both;"></div>
