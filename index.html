@@ -41,7 +41,12 @@
       buf = r;
       result += r;
       results.push(result);
-      li.innerHTML += r + '<br />';
+      if (r<0) {
+          r = -r;
+          li.innerHTML += "&minus; " + r + '<br />';
+      } else {
+        li.innerHTML += r + '<br />';
+      }
       liWyniki.innerHTML="";
     }
     document.getElementById('buttonWy').setAttribute("value", "Pokaż wyniki");
