@@ -1,0 +1,17 @@
+  .lista  {
+    float: left;
+    text-align: right;
+    height: 200px;
+    width: 40px;
+    margin: 10px;
+    padding: 10px;
+    padding-right: 30px;
+  }
+#lista, #wyniki {
+  border: 2px solid silver;
+}
+input {
+  margin: 5px;
+  width: 110px;
+  text-align: left;
+}

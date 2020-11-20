@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Soroban</title>
+  <link rel="stylesheet" href="main.css">
+  <script type="text/javascript">
+  var result;
+  var results = [];
+  function prepare_list(max, type) {
+    var li = document.getElementById('lista');
+    var buf = 100;
+    li.innerHTML = "";
+    var r;
+    result = 0;
+    results = [];
+    var liWyniki = document.getElementById('wyniki');
+    for (i=0; i<max; i++) {
+      if (type == "small") {
+        do { r = Math.floor(Math.random()*18) - 9;
+        } while ( (result+r) < 0 || (result+r) >= 10 || r == -buf || r==0);
+      }
+      if (type == "big") {
+        do { r = Math.floor(Math.random()*18) - 9;
+        } while ( r==0 || r == -buf || result+r <=0 ||
+           result+r  >= 10 && result > 10);
+      }
+      if (type == "normal") {
+        do {  r = Math.floor(Math.random()*18) - 9;
+        } while (r==0 || Math.abs(result-r) < 5 || r == -buf
+        || result+r <=0 || result+r >= 10 && result > 10);
+      }
+      if (type == "trzycyfrowe") {
+        do { r = Math.floor(Math.random()*999*2) - 999;
+        } while ((result+r) < 0 || (result+r) >= 1000 || Math.abs(r) < 100);
+      }
+
+      buf = r;
+      result += r;
+      results.push(result);
+      li.innerHTML += r + '<br />';
+      liWyniki.innerHTML="";
+    }
+    document.getElementById('buttonWy').setAttribute("value", "Pokaż wyniki");
+  }
+
+  function showWy() {
+    var liWyniki = document.getElementById('wyniki');
+    var butt = document.getElementById('buttonWy');
+    if (liWyniki.innerHTML.length) {
+        liWyniki.innerHTML = "";
+        butt.setAttribute("value", "Pokaż wyniki");
+        return;
+    }
+    var s = "";
+    for (var i=0 ; i<results.length; i++) {
+      s += "= " + results[i] + "<br />";
+    }
+    liWyniki.innerHTML = s;
+    butt.setAttribute("value", "Ukryj wyniki");
+  }
+  function showW() {
+    var li = document.getElementById('lista');
+    if (li.innerHTML.search('=') <0){
+      li.innerHTML += '= ' + result;
+    }
+  }
+
+  </script>
+</head>
+<body>
+  <div class="lista" id="lista"></div>
+  <div class="lista" id="wyniki"></div>
+  <form class="lista" >
+    <input type="button" value="Mali przyjaciele" onclick="prepare_list(5, 'small')">
+    <input type="button" value="Duzi przyjaciele" onclick="prepare_list(5, 'big')">
+    <input type="button" value="Zwykłe" onclick="prepare_list(5, 'normal')">
+    <input type="button" value="Trzycyfrowe" onclick="prepare_list(5, 'trzycyfrowe')">
+    <br /><br/>
+    <input type="button" id="buttonWy" value="Pokaż wyniki" onclick="showWy()">
+    <input type="button" value="Pokaż wynik" onclick="showW()">
+
+  </form>
+</body>
+</html>
+﻿
