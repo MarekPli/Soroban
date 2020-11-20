@@ -9,9 +9,10 @@
   <script type="text/javascript">
   var result;
   var results = [];
-  function prepare_list(max, type) {
+  function prepare_list(type) {
     var li = document.getElementById('lista');
     var buf = 100;
+    var max = document.getElementById('maxline').value;
     li.innerHTML = "";
     var r;
     result = 0;
@@ -74,15 +75,18 @@
   <div class="lista" id="lista"></div>
   <div class="lista" id="wyniki"></div>
   <form class="lista" >
-    <input type="button" value="Mali przyjaciele" onclick="prepare_list(5, 'small')">
-    <input type="button" value="Duzi przyjaciele" onclick="prepare_list(5, 'big')">
-    <input type="button" value="Zwykłe" onclick="prepare_list(5, 'normal')">
-    <input type="button" value="Trzycyfrowe" onclick="prepare_list(5, 'trzycyfrowe')">
-    <br /><br/>
+    <input type="button" value="Mali przyjaciele" onclick="prepare_list('small')">
+    <input type="button" value="Duzi przyjaciele" onclick="prepare_list('big')">
+    <input type="button" value="Zwykłe" onclick="prepare_list('normal')">
+    <input type="button" value="Trzycyfrowe" onclick="prepare_list('trzycyfrowe')">
+    <br /><br />
     <input type="button" id="buttonWy" value="Pokaż wyniki" onclick="showWy()">
     <input type="button" value="Pokaż wynik" onclick="showW()">
 
   </form>
+  <div style="clear:both;"></div>
+  <label for="maxline" style="color:gray;margin-left:15px">Długość listy liczb:</label>
+  <input type="number" name="" id="maxline" style="width:3em" min="3" max="10" value="5">
 </body>
 </html>
 ﻿
