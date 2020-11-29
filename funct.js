@@ -30,7 +30,6 @@ function num_to_list(m, n) {
   while(listN.length > listM.length) {
     listM.unshift(0);
   }
-  console.log(listM, listN);
 }
 
 function friends_need(m, n, r) {
@@ -81,9 +80,9 @@ function prepare_list(type) {
       } while (!( (result+r) > 0 && !friends_need_(result, r) && result+r <100 && r != -buf && r ));
     }
     if (type == 3) {
-      do { r = Math.floor(Math.random()*18) - 9;
-      } while (!( (result+r) > 0 && (friends_need_(result, r)==1 || !result) && result+r <10 && r != -buf && r));
-      console.log("i:"+i+" R="+r+" result=" + result);
+      do { r = Math.floor(Math.random()*16) - 8;
+      } while (!( (result+r) > 0 && (friends_need_(result, r) || !result) && result+r <9 && r));
+
     }
     if (type == 4) {
       do { r = Math.floor(Math.random()*99*2) - 99;
