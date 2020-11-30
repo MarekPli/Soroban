@@ -3,6 +3,7 @@ var results = [];
 var listM = [];
 var listN = [];
 var result;
+
 function code_number(x) {
   var niebo = (x/5) * 5;
   var ziemia = x % 5;
@@ -59,6 +60,18 @@ function friends_need_(m, n) {
   return 0;
 }
 
+function compare_numbers10(m, n) {
+  if (m==n) return 0;
+  num_to_list(m, m+n);
+  var plus = 0;
+  var minus = 0;
+  for (var i=0; i<listM.length; i++) {
+    if (listM[i]>listN[i]) plus++;
+    if (listM[i]<listN[i]) minus++;
+  }
+  if (plus && minus || m==0) return 1; // duzi przyjaciele
+  return 0;
+}
 function prepare_list(type) {
   var li = document.getElementById('lista');
   var buf = 100;
@@ -89,8 +102,12 @@ function prepare_list(type) {
       } while (!((result+r) > 0 && (friends_need_(result, r) || !result || 1) && result+r <100 && r != -buf && r));
     }
     if (type == 5) {
+      do { r = Math.floor(Math.random()*99*2) - 99;
+      } while (!((result+r) > 0 && compare_numbers10(result, r) && (result+r) < 100 && r != -buf && r));
+    }
+    if (type == 6) {
       do { r = Math.floor(Math.random()*999*2) - 999;
-      } while ((result+r) < 0 || (result+r) >= 1000 || Math.abs(r) < 100);
+      } while (!((result+r) > 0 && compare_numbers10(result, r) && (result+r) < 1000 && r != -buf && r));
     }
 
     buf = r;
